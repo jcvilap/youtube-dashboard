@@ -8,20 +8,21 @@ import { VideoService } from '../video.service';
   styleUrls: ['./videos.component.css']
 })
 export class VideosComponent implements OnInit {
-  videos = VIDEOS;
+  videos = [];
   selectedVideo = null;
 
 
   constructor(private videoService: VideoService) { }
 
   ngOnInit() {
+    this.getVideos();
   }
 
   onSelect(video): void {
     this.selectedVideo = video;
   }
 
-  getHeroes(): void {
+  getVideos(): void {
     this.videoService.getVideos()
       .subscribe(videos => this.videos = videos);
   }
