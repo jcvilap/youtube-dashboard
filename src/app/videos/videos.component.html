@@ -6,12 +6,4 @@
     <span class="badge">{{video.id}}</span> {{video.name}}
   </li>
 </ul>
-<div *ngIf="selectedVideo">
-  <h2>{{selectedVideo.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedVideo.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedVideo.name" placeholder="name">
-    </label>
-  </div>
-</div>
+<app-video-detail [video]="selectedVideo"></app-video-detail>
