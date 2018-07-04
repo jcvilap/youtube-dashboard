@@ -1,0 +1,17 @@
+<h2>My Videos</h2>
+<ul class="videos">
+  <li *ngFor="let video of videos"
+      [class.selected]="video === selectedVideo"
+      (click)="onSelect(video)">
+    <span class="badge">{{video.id}}</span> {{video.name}}
+  </li>
+</ul>
+<div *ngIf="selectedVideo">
+  <h2>{{selectedVideo.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedVideo.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedVideo.name" placeholder="name">
+    </label>
+  </div>
+</div>
