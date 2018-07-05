@@ -1,9 +1,9 @@
 <h2>My Videos</h2>
 <ul class="videos">
-  <li *ngFor="let video of videos"
-      [class.selected]="video === selectedVideo"
-      (click)="onSelect(video)">
-    <span class="badge">{{video.id}}</span> {{video.name}}
+  <li *ngFor="let video of videos">
+    <a routerLink="/detail/{{video.id}}">
+      <span class="badge">{{video.id}}</span> {{video.name}}
+    </a>
   </li>
 </ul>
-<app-video-detail [video]="selectedVideo"></app-video-detail>
+

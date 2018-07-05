@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { VIDEOS } from '../mock-videos';
-import { VideoService } from '../video.service';
+import {Component, OnInit} from '@angular/core';
+import {VideoService} from '../video.service';
 
 @Component({
   selector: 'app-videos',
@@ -11,8 +10,8 @@ export class VideosComponent implements OnInit {
   videos = [];
   selectedVideo = null;
 
-
-  constructor(private videoService: VideoService) { }
+  constructor(private videoService: VideoService) {
+  }
 
   ngOnInit() {
     this.getVideos();
