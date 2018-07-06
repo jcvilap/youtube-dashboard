@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
-import {VideoService} from '../video.service';
+import {VideoService} from '../videos/video.service';
 
 @Component({
   selector: 'app-video-detail',
@@ -29,10 +29,5 @@ export class VideoDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
-  }
-
-  save(): void {
-    this.videoService.updateVideo(this.video)
-      .subscribe(() => this.goBack());
   }
 }

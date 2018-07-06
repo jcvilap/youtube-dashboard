@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {VideoService} from '../video.service';
+import {VideoService} from '../videos/video.service';
 
 @Component({
   selector: 'app-dashboard',
