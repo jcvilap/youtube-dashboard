@@ -6,20 +6,20 @@ import {MessageService} from '../messages/message.service';
 
 @Injectable({providedIn: 'root'})
 export class VideoService {
+
+  apiKey = 'AIzaSyAc0ZzsLxkU1InVbDgRYoIg08bPouK-o8M';
+  baseUrl = 'https://content.googleapis.com/youtube/v3/';
+
   constructor(private http: HttpClient,
               private messageService: MessageService) {
   }
 
-  private getUrl(q = ''): string {
-    let url = 'https://content.googleapis.com/youtube/v3/search?q=';
-    url += q;
-    url += '&maxResults=25&part=snippet&key=AIzaSyAc0ZzsLxkU1InVbDgRYoIg08bPouK-o8M';
-    return url;
+  private getUrl({q = '', maxResults = 25, part = 'snippet', key = this.apiKey}): string {
+    return `${this.baseUrl}search?q=${q}&key=${key}&maxResults=${maxResults}&part=${part}`;
   }
 
-  /** GET videos from the server */
-  getVideos(): Observable<any> {
-    return this.http.get<any>(this.getUrl()).pipe(
+  getVideos(options = {}): Observable<any> {
+    return this.http.get<any>(this.getUrl(options)).pipe(
       map(({items}) => items),
       tap(videos => {
         console.log(videos);
@@ -29,22 +29,10 @@ export class VideoService {
     );
   }
 
-  /** GET video by id. Return `undefined` when id not found */
-  getVideoNo404<Data>(id: number): Observable<any> {
-    const url = `${this.getUrl()}/?id=${id}`;
-    return this.http.get<any[]>(url).pipe(
-      map(videos => videos[0]), // returns a {0|1} element array
-      tap(h => {
-        const outcome = h ? `fetched` : `did not find`;
-        this.log(`${outcome} video id=${id}`);
-      }),
-      catchError(this.handleError<any>(`getVideo id=${id}`))
-    );
-  }
 
   /** GET video by id. Will 404 if id not found */
   getVideo(id: number): Observable<any> {
-    const url = `${this.getUrl()}/${id}`;
+    const url = `${this.getUrl({})}/${id}`;
     return this.http.get<any>(url).pipe(
       tap(_ => this.log(`fetched video id=${id}`)),
       catchError(this.handleError<any>(`getVideo id=${id}`))

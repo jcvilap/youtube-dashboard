@@ -1,3 +1,7 @@
+.search-component {
+  padding: 25px;
+}
+
 .search-result li {
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
@@ -29,8 +33,13 @@
 }
 
 #search-box {
-  width: 200px;
-  height: 20px;
+  width: calc(100% - 35px);
+  height: 50px;
+  padding: 0 15px;
+  font-size: 17px;
+  font-style: italic;
+  align-content: center;
+  background-color: rgba(0, 0, 0, 0.07);
 }
 
 ul.search-result {
