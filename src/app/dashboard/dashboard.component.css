@@ -1,5 +1,6 @@
 .dashboard-container {
-  padding: 15px;
+  padding: 0 25px;
+  margin-top: -5px;
 }
 
 [class*='col-'] {
@@ -22,9 +23,9 @@ a {
   box-sizing: border-box;
 }
 
-h3 {
-  text-align: center;
-  margin-bottom: 0;
+h2 {
+  color: #cccccc;
+  margin-bottom: 10px;
 }
 
 h4 {
@@ -43,9 +44,9 @@ h4 {
   padding: 20px;
   text-align: center;
   color: #eee;
-  max-height: 120px;
-  min-width: 120px;
-  background-color: #607d8b;
+  min-height: 200px;
+  min-width: 200px;
+  background-color: #444;
   border-radius: 2px;
 }
 

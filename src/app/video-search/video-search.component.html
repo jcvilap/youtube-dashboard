@@ -1,10 +1,9 @@
 <div class="search-component">
   <input #searchBox id="search-box" placeholder="Search Videos" (keyup)="search(searchBox.value)"/>
-
   <ul class="search-result">
     <li *ngFor="let video of videos$ | async">
-      <a routerLink="/detail/{{video.id}}">
-        {{video.name}}
+      <a routerLink="/detail/{{video.id.videoId}}">
+        {{video.snippet.title}}
       </a>
     </li>
   </ul>

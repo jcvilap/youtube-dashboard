@@ -44,10 +44,7 @@ export class VideoService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<any[]>(this.getUrl(term)).pipe(
-      tap(_ => this.log(`found videos matching "${term}"`)),
-      catchError(this.handleError<any[]>('searchVideos', []))
-    );
+    return this.getVideos({q: term, maxResults: 10});
   }
 
   /**
