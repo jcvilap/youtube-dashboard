@@ -16,8 +16,14 @@ export class DashboardComponent implements OnInit {
     this.getVideos();
   }
 
-  getVideos(): void {
-    this.videoService.getVideos({maxResults: 8})
-      .subscribe(videos => this.videos = videos);
+  getVideos(q = '', maxResults = 8): void {
+    this.videoService.getVideos({maxResults, q})
+      .subscribe(videos => {
+        this.videos = videos.slice();
+      });
+  }
+
+  loadVideos(term) {
+    this.getVideos(term, 25);
   }
 }

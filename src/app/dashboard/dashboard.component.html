@@ -1,4 +1,4 @@
-<app-video-search></app-video-search>
+<app-video-search (enterPressed)="loadVideos($event)"></app-video-search>
 <div class="dashboard-container">
   <h2>Top Videos</h2>
   <div class="grid grid-pad">
@@ -10,5 +10,3 @@
     </a>
   </div>
 </div>
-
-
