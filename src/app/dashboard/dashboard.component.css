@@ -55,17 +55,37 @@ h4 {
 .module {
   padding: 20px;
   text-align: center;
+  background-size: auto 200px!important;
   color: #eee;
-  min-height: 200px;
+  background-repeat: no-repeat!important;
+  min-height: 250px;
+  background-color: #444444;
   min-width: 200px;
-  background-color: #444;
+  cursor: pointer;
   border-radius: 2px;
 }
 
+.thumbnail-title {
+  margin-top: 190px;
+  color: black;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.thumbnail-title-title {
+ color: black;
+  text-align: left;
+  font-size: 12px;
+}
+
+.thumbnail-title-date {
+  color: #888888;
+  text-align: left;
+  font-size: 11px;
+}
+
 .module:hover {
-  background-color: #eee;
-  cursor: pointer;
-  color: #607d8b;
+  opacity: 0.5;
 }
 
 .grid-pad {
@@ -84,11 +104,13 @@ h4 {
 }
 
 @media (max-width: 1024px) {
-  .grid {
-    margin: 0;
-  }
-
   .module {
     min-width: 60px;
+  }
+}
+
+@media (max-width: 950px) {
+  .col-1-4 {
+    width: 33%;
   }
 }
