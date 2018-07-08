@@ -14,8 +14,8 @@ export class VideoService {
               private messageService: MessageService) {
   }
 
-  private getUrl({q = '', maxResults = 25, part = 'snippet', key = this.apiKey}): string {
-    return `${this.baseUrl}search?q=${q}&key=${key}&maxResults=${maxResults}&part=${part}`;
+  private getUrl({q = '', maxResults = 25, part = 'snippet', key = this.apiKey, order = 'relevance'}): string {
+    return `${this.baseUrl}search?q=${q}&key=${key}&order=${order}&maxResults=${maxResults}&part=${part}`;
   }
 
   getVideos(options = {}): Observable<any> {

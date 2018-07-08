@@ -8,6 +8,11 @@ import {VideoService} from '../videos/video.service';
 })
 export class DashboardComponent implements OnInit {
   videos = [];
+  options = {
+    order: 'relevance',
+    q: '',
+    maxResults: 8
+  };
 
   constructor(private videoService: VideoService) {
   }
@@ -16,14 +21,17 @@ export class DashboardComponent implements OnInit {
     this.getVideos();
   }
 
-  getVideos(q = '', maxResults = 8): void {
-    this.videoService.getVideos({maxResults, q})
+  getVideos() {
+    const subscription = this.videoService.getVideos(this.options)
       .subscribe(videos => {
         this.videos = videos.slice();
+        subscription.unsubscribe();
       });
   }
 
-  loadVideos(term) {
-    this.getVideos(term, 25);
+  loadVideos(q) {
+    this.options.q = q;
+    this.options.maxResults = q ? 25 : 8;
+    this.getVideos();
   }
 }
