@@ -32,7 +32,7 @@ export class VideoSearchComponent implements OnInit {
       distinctUntilChanged(),
       switchMap((term: string) => {
         if (term) {
-          return this.videoService.searchVideos(term);
+          return this.videoService.lookupVideos(term);
         } else {
           return of([]);
         }

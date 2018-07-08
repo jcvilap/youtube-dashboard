@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
-
 import {VideoService} from '../videos/video.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class VideoDetailComponent implements OnInit {
   }
 
   getVideo(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     this.videoService.getVideo(id)
       .subscribe(video => this.video = video);
   }

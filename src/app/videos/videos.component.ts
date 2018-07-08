@@ -22,7 +22,7 @@ export class VideosComponent implements OnInit {
   }
 
   getVideos(): void {
-    this.videoService.getVideos()
+    this.videoService.searchVideos()
       .subscribe(videos => this.videos = videos);
   }
 }

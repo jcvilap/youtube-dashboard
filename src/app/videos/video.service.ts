@@ -14,36 +14,42 @@ export class VideoService {
               private messageService: MessageService) {
   }
 
-  private getUrl({q = '', maxResults = 25, part = 'snippet', key = this.apiKey, order = 'relevance'}): string {
+  private getSearchUrl({q = '', maxResults = 25, part = 'snippet', key = this.apiKey, order = 'relevance'}): string {
     return `${this.baseUrl}search?q=${q}&key=${key}&order=${order}&maxResults=${maxResults}&part=${part}`;
   }
 
-  getVideos(options = {}): Observable<any> {
-    return this.http.get<any>(this.getUrl(options)).pipe(
+  private getVideosUrl({id = '', maxResults = 25, part = 'snippet,player,statistics', key = this.apiKey}): string {
+    return `${this.baseUrl}videos?&key=${key}&id=${id}&maxResults=${maxResults}&part=${part}`;
+  }
+
+  searchVideos(options = {}): Observable<any> {
+    return this.http.get<any>(this.getSearchUrl(options)).pipe(
       map(({items}) => items),
       tap(videos => {
         console.log(videos);
         return this.log(`fetched videos`);
       }),
-      catchError(this.handleError('getVideos', {}))
+      catchError(this.handleError('searchVideos', {}))
     );
   }
 
-  /** GET video by id. Will 404 if id not found */
-  getVideo(id: number): Observable<any> {
-    const url = `${this.getUrl({})}/${id}`;
+  getVideo(videoId: string): Observable<any> {
+    const url = this.getVideosUrl({id: videoId} as any);
     return this.http.get<any>(url).pipe(
-      tap(_ => this.log(`fetched video id=${id}`)),
-      catchError(this.handleError<any>(`getVideo id=${id}`))
+      map(({items}) => items[0]),
+      tap(video => {
+        console.log(video);
+        return this.log(`fetched video id=${videoId}`);
+      }),
+      catchError(this.handleError<any>(`getVideo id=${videoId}`))
     );
   }
 
-  /* GET videos whose name contains search term */
-  searchVideos(term: string): Observable<any[]> {
+  lookupVideos(term: string): Observable<any[]> {
     if (!term.trim()) {
       return of([]);
     }
-    return this.getVideos({q: term, maxResults: 10});
+    return this.searchVideos({q: term, maxResults: 10});
   }
 
   /**
