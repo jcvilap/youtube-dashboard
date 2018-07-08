@@ -13,7 +13,7 @@
     <a *ngFor="let video of videos" class="col-1-4" routerLink="/detail/{{video.id.videoId}}">
       <div class="module video" [style.background]="'url(' + video.snippet.thumbnails.high.url + ')'">
         <div class="thumbnail-title">{{video.snippet.title}}</div>
-        <div class="thumbnail-title">{{video.snippet.publishedAt}}</div>
+        <div class="thumbnail-title">{{moment.utc(video.snippet.publishedAt).fromNow()}}</div>
       </div>
     </a>
   </div>

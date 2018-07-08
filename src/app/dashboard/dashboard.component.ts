@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import moment from 'moment';
 import {VideoService} from '../videos/video.service';
 
 @Component({
@@ -8,6 +9,7 @@ import {VideoService} from '../videos/video.service';
 })
 export class DashboardComponent implements OnInit {
   videos = [];
+  moment = moment;
   options = {
     order: 'relevance',
     q: '',
