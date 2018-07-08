@@ -25,10 +25,7 @@ export class VideoService {
   searchVideos(options = {}): Observable<any> {
     return this.http.get<any>(this.getSearchUrl(options)).pipe(
       map(({items}) => items),
-      tap(videos => {
-        console.log(videos);
-        return this.log(`fetched videos`);
-      }),
+      tap(videos => this.log(`fetched videos`)),
       catchError(this.handleError('searchVideos', {}))
     );
   }
