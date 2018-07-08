@@ -29,7 +29,6 @@ export class VideoService {
     );
   }
 
-
   /** GET video by id. Will 404 if id not found */
   getVideo(id: number): Observable<any> {
     const url = `${this.getUrl({})}/${id}`;
