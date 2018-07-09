@@ -52,8 +52,8 @@
 
 .fav-button{
   display: block;
-  float: right;
-  margin-top: 15px;
+  position: absolute;
+  right: 15px;
 }
 
 .comment {
