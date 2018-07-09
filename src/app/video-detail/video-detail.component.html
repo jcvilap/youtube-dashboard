@@ -7,4 +7,6 @@
     </label>
   </div>
   <button (click)="goBack()">go back</button>
+
+  <div [innerHTML]="video.player.embedHtml | sanitizeHtml"></div>
 </div>

@@ -11,6 +11,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {VideoSearchComponent} from './video-search/video-search.component';
 import {VideoService} from './videos/video.service';
 import {MessageService} from './messages/message.service';
+import {SanitizeHtmlPipe} from './pipes/SanitizeHtmlPage';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {MessageService} from './messages/message.service';
     VideoDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    VideoSearchComponent
+    VideoSearchComponent,
+    SanitizeHtmlPipe
   ],
   imports: [
     BrowserModule,
