@@ -1,0 +1,26 @@
+<div *ngIf="video && comments">
+  <div class="player" [innerHTML]="video.player.embedHtml | sanitizeHtml"></div>
+  <div class="description-left">
+    <div class="description-title">{{video.snippet.title}}</div>
+    <div class="description-views">{{video.snippet.channelTitle}}</div>
+    <div class="description-views">{{video.statistics.viewCount | number}} views</div>
+    <div class="description-date">Added {{video.snippet.publishedAt | timeFromNow }}</div>
+  </div>
+  <div class="description-right">
+    <div class="description-views likes">{{video.statistics.dislikeCount | number}} dislikes</div>
+    <div class="description-views likes">{{video.statistics.likeCount | number}} likes</div>
+    <button class="fav-button" (click)="toggleFavorite(d)">{{isFav() ? 'REMOVE FROM' : 'ADD TO'}} FAVORITES</button>
+  </div>
+  <div class="comments-header"> {{video.statistics.commentCount | number}} Comments</div>
+  <div class="comment" *ngFor="let comment of comments">
+    <a class="author-name" href="{{comment.snippet.topLevelComment.snippet.authorChannelUrl}}">
+      {{comment.snippet.topLevelComment.snippet.authorDisplayName}}
+    </a>
+    <span class="comment-added">
+      Added {{comment.snippet.topLevelComment.snippet.publishedAt | timeFromNow }}
+    </span>
+    <div class="comment-text" [innerHTML]="comment.snippet.topLevelComment.snippet.textDisplay | sanitizeHtml"></div>
+  </div>
+</div>
+
+

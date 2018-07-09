@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
-import {MessageService} from '../messages/message.service';
+import {MessageService} from '../components/messages/message.service';
 
 @Injectable({providedIn: 'root'})
 export class VideoService {
@@ -14,16 +14,17 @@ export class VideoService {
               private messageService: MessageService) {
   }
 
-  private getSearchUrl({q = '', maxResults = 25, part = 'snippet', key = this.apiKey, order = 'relevance'}): string {
-    return `${this.baseUrl}search?q=${q}&key=${key}&order=${order}&maxResults=${maxResults}&part=${part}`;
-  }
-
-  private getVideosUrl({id = '', maxResults = 25, part = 'snippet,player,statistics', key = this.apiKey}): string {
-    return `${this.baseUrl}videos?&key=${key}&id=${id}&maxResults=${maxResults}&part=${part}`;
-  }
-
   searchVideos(options = {}): Observable<any> {
-    return this.http.get<any>(this.getSearchUrl(options)).pipe(
+    const { q, maxResults, part, key, order} = {
+      q: '',
+      maxResults: 25,
+      part: 'snippet',
+      key: this.apiKey,
+      order: 'relevance',
+      ...options
+    };
+    const url = `${this.baseUrl}search?q=${q}&key=${key}&order=${order}&maxResults=${maxResults}&part=${part}`;
+    return this.http.get<any>(url).pipe(
       map(({items}) => items),
       tap(videos => this.log(`fetched videos`)),
       catchError(this.handleError('searchVideos', {}))
@@ -31,7 +32,14 @@ export class VideoService {
   }
 
   getVideo(videoId: string): Observable<any> {
-    const url = this.getVideosUrl({id: videoId} as any);
+    const { id, maxResults, part, key, maxWidth} = {
+      id: videoId,
+      maxResults: 25,
+      part: 'snippet,player,statistics',
+      key: this.apiKey,
+      maxWidth: window.innerWidth
+    };
+    const url = `${this.baseUrl}videos?&key=${key}&id=${id}&maxResults=${maxResults}&part=${part}&maxWidth=${maxWidth}`;
     return this.http.get<any>(url).pipe(
       map(({items}) => items[0]),
       tap(video => {
@@ -47,6 +55,19 @@ export class VideoService {
       return of([]);
     }
     return this.searchVideos({q: term, maxResults: 10});
+  }
+
+  getVideoComments(videoId: string): Observable<any> {
+    const { maxResults, part, key} = {
+      maxResults: 50,
+      part: 'snippet',
+      key: this.apiKey
+    };
+    const url = `${this.baseUrl}commentThreads?&key=${key}&videoId=${videoId}&maxResults=${maxResults}&part=${part}`;
+    return this.http.get<any>(url).pipe(
+      map(({items}) => items),
+      catchError(this.handleError<any>(`getVideo id=${videoId}`))
+    );
   }
 
   /**

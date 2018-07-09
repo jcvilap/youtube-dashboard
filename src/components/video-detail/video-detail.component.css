@@ -1,0 +1,115 @@
+.description-right {
+  text-align: right;
+  display: inline-block;
+  width: calc(50% - 20px);
+  margin-right: 20px;
+  margin-top: 15px;
+  vertical-align: top;
+}
+
+.description-left {
+  text-align: left;
+  display: inline-block;
+  width: calc(50% - 20px);
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.likes {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.description-title{
+  color: black;
+  font-weight: 600;
+  text-align: inherit;
+  font-size: 17px;
+}
+
+.description-date, .description-views {
+  color: #888888;
+  text-align: inherit;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.description-views {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.comments-header {
+  padding-top: 25px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  color: rgba(0,0,0,0.7);
+  text-align: left;
+  font-size: 18px;
+  margin-top: 25px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.fav-button{
+  display: block;
+  float: right;
+  margin-top: 15px;
+}
+
+.comment {
+  width: 100%;
+  padding: 15px 20px;
+}
+
+.comment .author-name {
+  margin-right: 15px;
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+}
+
+.comment .comment-added {
+  font-size: 13px;
+}
+
+.comment .comment-text {
+  font-size: 16px;
+  margin-top: 8px;
+  color: #444;
+}
+
+label {
+  display: inline-block;
+  width: 3em;
+  margin: .5em 0;
+  color: #607D8B;
+  font-weight: bold;
+}
+
+input {
+  height: 2em;
+  font-size: 1em;
+  padding-left: .4em;
+}
+
+button {
+  margin-top: 20px;
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+button:disabled {
+  background-color: #eee;
+  color: #ccc;
+  cursor: auto;
+}

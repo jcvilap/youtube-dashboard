@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Observable, of, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import {VideoService} from '../videos/video.service';
+import {VideoService} from '../../services/video.service';
 
 @Component({
   selector: 'app-video-search',

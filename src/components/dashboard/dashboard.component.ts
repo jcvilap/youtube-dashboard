@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import * as moment from 'moment';
-import {VideoService} from '../videos/video.service';
+import {VideoService} from '../../services/video.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +8,6 @@ import {VideoService} from '../videos/video.service';
 })
 export class DashboardComponent implements OnInit {
   videos = [];
-  moment = moment;
   options = {
     order: 'relevance',
     q: '',
@@ -32,8 +30,12 @@ export class DashboardComponent implements OnInit {
   }
 
   loadVideos(q) {
+    const isTopResults = !q;
     this.options.q = q;
-    this.options.maxResults = q ? 25 : 8;
+    this.options.maxResults = isTopResults ? 8 : 25;
+    if (isTopResults) {
+      this.options.order = 'relevance';
+    }
     this.getVideos();
   }
 }

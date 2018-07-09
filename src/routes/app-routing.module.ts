@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {DashboardComponent} from '../dashboard/dashboard.component';
-import {VideosComponent} from '../videos/videos.component';
-import {VideoDetailComponent} from '../video-detail/video-detail.component';
+import {DashboardComponent} from '../components/dashboard/dashboard.component';
+import {VideosComponent} from '../components/videos/videos.component';
+import {VideoDetailComponent} from '../components/video-detail/video-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},

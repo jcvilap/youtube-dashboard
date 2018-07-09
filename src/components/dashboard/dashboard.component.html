@@ -14,7 +14,7 @@
       <div class="module video" [style.background]="'url(' + video.snippet.thumbnails.high.url + ')'">
         <div class="thumbnail-title">
           <div class="thumbnail-title-title">{{video.snippet.title}}</div>
-          <div class="thumbnail-title-date">{{moment.utc(video.snippet.publishedAt).fromNow()}}</div>
+          <div class="thumbnail-title-date">{{video.snippet.publishedAt | timeFromNow }}</div>
         </div>
       </div>
     </a>
