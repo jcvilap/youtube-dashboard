@@ -1,0 +1,9 @@
+<h2>Favorite Videos</h2>
+<ul class="favorites">
+  <li *ngFor="let favorite of favorites">
+    <a routerLink="/detail/{{favorite.id}}">
+      <span class="badge">{{favorite.snippet.channelTitle}}</span> {{favorite.snippet.title}}
+    </a>
+  </li>
+</ul>
+

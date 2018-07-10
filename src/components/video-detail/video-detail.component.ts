@@ -22,8 +22,8 @@ export class VideoDetailComponent implements OnInit {
 
   getVideo(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.videoService.getVideo(id)
-      .subscribe(video => this.video = video);
+    this.videoService.getVideoByIds(id)
+      .subscribe(videos => this.video = videos[0]);
   }
 
   getComments(): void {
@@ -34,17 +34,19 @@ export class VideoDetailComponent implements OnInit {
 
   toggleFavorite() {
     const id = this.route.snapshot.paramMap.get('id');
-    const isFavorite = this.isFav();
-    if (isFavorite) {
-      sessionStorage.removeItem(id);
+    const favs = JSON.parse(sessionStorage.getItem('favorites')) || [];
+    if (favs.includes(id)) {
+      favs.splice(favs.indexOf(id), 1);
     } else {
-      sessionStorage.setItem(id, 'favorite');
+      favs.push(id);
     }
+    sessionStorage.setItem('favorites', JSON.stringify(favs));
   }
 
   isFav() {
+    const favs = JSON.parse(sessionStorage.getItem('favorites')) || [];
     const id = this.route.snapshot.paramMap.get('id');
-    return sessionStorage.getItem(id) === 'favorite';
+    return favs.includes(id);
   }
 
 

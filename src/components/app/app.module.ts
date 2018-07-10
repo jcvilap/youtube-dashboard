@@ -3,23 +3,20 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
-import {VideosComponent} from '../videos/videos.component';
+import {FavoritesComponent} from '../favorites/favorites.component';
 import {VideoDetailComponent} from '../video-detail/video-detail.component';
-import {MessagesComponent} from '../messages/messages.component';
 import {AppRoutingModule} from '../../routes/app-routing.module';
 import {DashboardComponent} from '../dashboard/dashboard.component';
 import {VideoSearchComponent} from '../video-search/video-search.component';
 import {VideoService} from '../../services/video.service';
-import {MessageService} from '../messages/message.service';
 import {SanitizeHtmlPipe} from '../../pipes/sanitize-html.pipe';
 import {TimeFromNowPipe} from '../../pipes/time-from-now.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VideosComponent,
+    FavoritesComponent,
     VideoDetailComponent,
-    MessagesComponent,
     DashboardComponent,
     VideoSearchComponent,
     SanitizeHtmlPipe,
@@ -31,7 +28,7 @@ import {TimeFromNowPipe} from '../../pipes/time-from-now.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [VideoService, MessageService],
+  providers: [VideoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
